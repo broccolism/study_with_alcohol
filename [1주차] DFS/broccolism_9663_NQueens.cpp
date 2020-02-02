@@ -16,8 +16,8 @@ bool confirm(bool **square, int row, int col)
         }
     }
     
-    int check_right = col + 1; 
-    int check_left = col - 1; 
+    int check_right = col + 1;
+    int check_left = col - 1;
     
     for (int i = row - 1; i >= 0; --i)
     {
@@ -49,8 +49,7 @@ void queens(bool **square, int cur_row)
     
     for (int i = 0; i < num; ++i)
     {
-        bool tmp = square[cur_row][i];
-        
+        int tmp = square[cur_row][i];
         if (confirm(square, cur_row, i))
         {
             square[cur_row][i] = 1;
@@ -59,9 +58,6 @@ void queens(bool **square, int cur_row)
         }
         
         square[cur_row][i] = tmp;
-        //사실 성공할 경우를 생각해서 이전 상태로(tmp 사용) 복구했지만
-        //tmp 없애고 square[cur_row][i] = 0; 으로 해도 잘 됨!
-        //생각해보니 성공 시에는 여기까지 올 일이 없겠구만
     }
 }
 

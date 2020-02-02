@@ -52,14 +52,15 @@ void bfs(int row, int col) // (x, y) is the starting position of a wolf or a she
         else if (what_am_i == 2)
             num_of_sheep++;
         
-        if (i - 1 > -1 && ground[i - 1][j] != '#') //go up.
-            Q.push(make_pair(i - 1, j));
-        if (i + 1 < R && ground[i + 1][j] != '#') //go down.
-            Q.push(make_pair(i + 1, j));
-        if (j - 1 > -1 && ground[i][j - 1] != '#') //go left.
-            Q.push(make_pair(i, j - 1));
-        if (j + 1 < C && ground[i][j + 1] != '#') //go right.
-            Q.push(make_pair(i, j + 1));
+        
+            if (i - 1 > -1 && ground[i - 1][j] != '#') //go up.
+                Q.push(make_pair(i - 1, j));
+            if (i + 1 < R && ground[i + 1][j] != '#') //go down.
+                Q.push(make_pair(i + 1, j));
+            if (j - 1 > -1 && ground[i][j - 1] != '#') //go left.
+                Q.push(make_pair(i, j - 1));
+            if (j + 1 < C && ground[i][j + 1] != '#') //go right.
+                Q.push(make_pair(i, j + 1));
         
     }
 

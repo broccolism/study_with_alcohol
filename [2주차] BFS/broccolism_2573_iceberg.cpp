@@ -124,15 +124,6 @@ int main()
         for (int i = 0; i < R; ++i)
             for (int j = 0; j < C; ++j)
                 SEA[i][j] = TMP_SEA[i][j];
-                
-        cout << "=================" << endl;
-        for (int i = 0; i < R; ++i)
-        {
-            for (int j = 0; j < C; ++j)
-                cout << SEA[i][j] << " ";
-            cout << endl;
-        }
-        cout << "=================" << endl;
         
         done = is_broken();
     }

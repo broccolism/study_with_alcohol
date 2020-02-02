@@ -36,7 +36,7 @@ void sudoku(int num)
             cout << endl;
         }
 
-        exit(0); //NOT "return" .. ..!!
+        exit(0);
     }
     
     int put_here_x = zeros[num][1];
