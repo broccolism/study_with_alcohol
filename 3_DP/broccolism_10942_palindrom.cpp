@@ -19,16 +19,18 @@
         {
             PALINDROM[i][i] = 1;
             if (i < LEN - 1)
-                PALINDROM[i][i + 1] = (SEQUENCE[i] == SEQUENCE[i + 1]);
+                PALINDROM[i][i + 1] = SEQUENCE[i] == SEQUENCE[i + 1];
         }
 
-        int prev;
+        int extend;
+        /*채우려는 칸 기준으로 ↙ 방향 칸의 정보가 필요하기 때문에
+        for loop의 조건이 이모양임*/
         for (int i = LEN - 1; i > -1; --i)
         {
             for (int j = i + 2; j < LEN; ++j)
             {
-                prev = (SEQUENCE[i] == SEQUENCE[j]);
-                PALINDROM[i][j] = (PALINDROM[i + 1][j - 1] && prev);
+                extend = SEQUENCE[i] == SEQUENCE[j];
+                PALINDROM[i][j] = PALINDROM[i + 1][j - 1] && extend;
             }
         }
     }
