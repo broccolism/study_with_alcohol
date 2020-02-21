@@ -1,60 +1,59 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
-string IM_STRING = "";
-bool PALINDROM[2500][2500] = { 0, };
+string INPUT = "";
+bool PALINDROM[2500][2500] = {};
+int NUM_OF_PAL[2500] = {};
 
-void fill_true_false_table(int len)
+void fill_num(int len)
 {
-
     for (int i = 0; i < len; ++i)
-    {
-        PALINDROM[i][i] = 1;
-        if (i < len - 1)
-            PALINDROM[i][i + 1] = IM_STRING[i] == IM_STRING[i + 1];
-    }
-
-    bool extend;
-    for (int i = len - 1; i > -1; --i)
-    {
-        for (int j = i + 2; j < len; ++j)
         {
-            extend = IM_STRING[i] == IM_STRING[j];
-            PALINDROM[i][j] = extend && PALINDROM[i + 1][j - 1];
+            PALINDROM[i][i] = 1;
+            if (i < len - 1)
+                PALINDROM[i][i + 1] = INPUT[i] == INPUT[i + 1];
         }
-    }
 
-    for (int i  =0; i < len; ++i)
-    {
-        cout << IM_STRING[i] << " ";
-        for (int j  = 0; j < len; ++j)
-            cout << PALINDROM[i][j] << " ";
-        cout << endl;
-    }
+        int extend;
+        /*채우려는 칸 기준으로 ↙ 방향 칸의 정보가 필요하기 때문에
+        for loop의 조건이 이모양임*/
+        for (int i = len - 1; i > -1; --i)
+        {
+            for (int j = i + 2; j < len; ++j)
+            {
+                extend = INPUT[i] == INPUT[j];
+                PALINDROM[i][j] = PALINDROM[i + 1][j - 1] && extend;
+            }
+        }
 }
 
-int find_the_best(int len)
+int minimum(int len)
 {
-    int return_me = 2500;
-    
-    int row = 0;
-    int col = len - 1;
-    while (row < len)
+    //initialize!
+    NUM_OF_PAL[0] = 1;
+    for (int i = 1; i < len; ++i)
+        NUM_OF_PAL[i] = 2501;
+
+    for (int i = 1; i < len; ++i)
     {
+        for (int j = 0; j <= i; ++j)
+            if (PALINDROM[j][i]) //can make new palindrom
+                NUM_OF_PAL[i] = min(NUM_OF_PAL[i], NUM_OF_PAL[j - 1] + 1);
 
     }
 
-    return return_me;
+    return NUM_OF_PAL[len - 1];
 }
 
 int main()
 {
-    cin >> IM_STRING;
-    int len = IM_STRING.length();
+    //get input.
+    cin >> INPUT;
 
-    fill_true_false_table(len);
-
-    cout << find_the_best(len) << '\n';
+    fill_num(INPUT.length());
+    
+    cout << minimum(INPUT.length()) << endl;
 }

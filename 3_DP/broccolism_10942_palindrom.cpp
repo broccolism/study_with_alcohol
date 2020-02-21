@@ -45,16 +45,7 @@
             cin >> SEQUENCE[i];
         
         dp();    
-    /*
-        cout << "=============" << '\n';
-        for (int i = 0; i < LEN; ++i)
-        {
-            for (int j = 0; j < LEN; ++j)
-                cout << PALINDROM[i][j] << " ";
-            cout << '\n';
-        }
-        cout << "=============" << '\n';
-    */    
+ 
         cin >> QUESTIONS;
         while (QUESTIONS > 0)
         {
